@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //primitive data types
+
+        //Booleans are data types that only have two possible states: true or false
+        let hasKey = false;
+
+        //booleans are different from other types in that they can be toggled
+
+        let isLightOn = true;
+
+        function toggleLight(){
+
+            //toggle
+            isLightOn = !isLightOn; //switch the state of isLightOn to opposite of what it is currently
+
+            document.body.style.backgroundColor = isLightOn ? 'white' : 'black'; //ternary operator where if isLightOn is true, we use the first value and if it's false we use the second value
+        }
+
+        //numbers
+
+        let num = 42; //number data type, can be integer or floating point
+
+        num = 42.7; //no problem changing fron int to float
+
+        //strings
+
+        let myString = "Say something"; 
+
+        //typewrite exercise
+
+    </script>
+</body>
+</html>

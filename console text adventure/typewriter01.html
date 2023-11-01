@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="output"></div>
+
+    <script>
+
+        let str = "Nice to meet you! I'm website... Can you say your name out loud?... That's a nice name. We'll it was really nice meeting you... Please leave now... You're still here? ... Wait for it ... I bet you can't resist the charm of this typewriter effect! ... It's almost hypnotizing, isn't it? ... Why are you still watching? ... You're waiting for something profound, right? ... Sorry to disappoint, but it's just text! ... Okay, okay, one more thing ... You're awesome for sticking around this long! ... But seriously, shouldn't you be doing something more productive? ... Nah, let's keep this going ... Just kidding, this is the end ... Or is it? ...";
+
+        let i = 0;
+        let container = document.getElementById("output");
+
+        function typeWriter(){
+
+            if (i < str.length){
+
+                container.innerHTML += str.charAt(i);
+                i++;
+
+                setTimeout(typeWriter, 100);  
+            }
+
+            
+        }
+
+        typeWriter();
+
+
+    </script>
+    
+</body>
+</html>
