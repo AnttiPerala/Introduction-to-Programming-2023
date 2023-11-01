@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let gameState = "start"; //game has just started
+
+        function gameLoop(){
+            if (gameState !== "escaped"){
+
+               setTimeout(gameLoop, 3000);
+               console.log("Hurry up!");
+
+            } else {
+                console.log("Thanks for playing!")
+            }
+            
+        }
+
+        console.log("Welcome to the text adventure! Type your commands directly into the console.");
+
+        console.log("For example, to go north, type: handleCommand('go north')");
+
+         console.log("You are in a small room with a door to the north. What will you do?");
+
+        //invoke gameLoop for the first time
+        gameLoop();
+
+        //handling commands
+
+        function handleCommand(command){
+            console.log("Seems like you are trying to " + command + ". Nothing special happens.");
+        }
+
+
+
+    </script>
+</body>
+
+</html>

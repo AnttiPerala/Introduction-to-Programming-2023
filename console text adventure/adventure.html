@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let gameState = "start"; //game has just started
+
+        function gameLoop(){
+            if (gameState !== "escaped"){
+
+               setTimeout(gameLoop, 3000);
+               console.log("Hurry up!");
+
+            } else {
+                console.log("Thanks for playing!")
+            }
+            
+        }
+
+        //invoke gameLoop for the first time
+        gameLoop();
+
+
+
+    </script>
+</body>
+
+</html>
