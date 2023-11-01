@@ -41,6 +41,15 @@
 
         let mystring2 = 'abcd';
 
+        //difference between strings and numbers
+        let myNumber = 1;
+
+        let myNumberString = '1';
+
+        console.log(myNumber + myNumber); //2
+
+        console.log(myNumberString + myNumberString); //11
+
         //problem with single quotes
         let myThing = 'Antti\'s bicycle';
 
@@ -59,6 +68,85 @@
         myVariable = "I'm no longer a number!";
 
         var myOldFashionedVariable = "something"; //var creates a function scope variable
+
+        myGlobalVariable = "I'm visible everywhere"; //declaring a variable without let or const or var in fron, creates a global variable
+
+        let a,b,c; //same as typing let a; let b; let c;
+
+        //the dot indicates decimals in a number
+
+        let myFloat = 2.3;
+
+        //dots are also used as member access operators
+
+        console.log(myThing.length);
+        
+        //tweet lenght validator
+
+        function tweetCheck(str){
+            console.log("Your string was " + str.length + " characters long");
+        }
+
+        //parenthesis are used to invoke a function
+        tweetCheck("Hello");
+        tweetCheck("Hello world");
+
+        //math operations
+        let m = 10;
+        let n = 5;
+
+        console.log("Addition:", m + n);
+        console.log("Subtraction:", m - n);
+        console.log("Multiplication:", m * n);
+        console.log("Division:", m / n);
+
+        //increment
+        m = m + 1;
+        console.log("m after increment is: " + m);
+        m++;
+        console.log("m after increment is: " + m);
+
+        //decrement
+        n--;
+        n--;
+        n--;
+        n--;
+        n--;
+        n--;
+        n--;
+       console.log("n after decrement is: " + n);
+
+       //rounding numbers
+
+       let myDecimalValue = 2.51839;
+       let myRoundedValue = Math.round(myDecimalValue);
+
+       console.log("My decimal value was: " + myDecimalValue + " but my rounded out value is: " + myRoundedValue);
+
+       //random values
+
+       let myRandomValue = Math.random();
+
+       console.log(myRandomValue);
+
+       //convert the random number to a range of 0 to 4
+       let myRangeNumber = Math.random() * 4;
+
+       console.log(myRangeNumber);
+
+       //we want either 1,2,3 or 4
+       let myRoundNumber = Math.floor(Math.random() * 4) + 1;
+
+       console.log(myRoundNumber);
+
+       //dishes lottery
+       let family = ["Mom", "Dad", "Jack", "Rose"];
+
+       let myLot = Math.floor(Math.random() * 4) + 1; //rigged
+
+       console.log("This time the dishes are done by: " + family[myLot]);
+
+       
 
 
     </script>
