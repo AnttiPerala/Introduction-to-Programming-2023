@@ -36,7 +36,28 @@
         //handling commands
 
         function handleCommand(command){
-            console.log("Seems like you are trying to " + command + ". Nothing special happens.");
+
+            if (command === 'take key'){
+                gameState = "has key";
+                return "You now have a key.";
+            
+            } else if (command === 'go to sleep') {
+                return "You lay down and your eyes become heavy. You fall asleep and see a very strange dream. In the dream you use a key to escape your prison. Could this be a prophetic dream?";
+            
+            } else if (command === 'go north'){
+                if (gameState === 'has key'){
+                    gameState = "escaped";
+                    return "You unlocked the door and escaped the room. Congratulations!"
+                } else { //player doesnt have the key
+
+                    return "The door is locked. Maybe there is a key somewhere?"
+
+                }
+            } else { //this happens if the command was not one of the above commands
+               return "Seems like you are trying to " + command + ". Nothing special happens."; 
+            }
+
+            
         }
 
 
