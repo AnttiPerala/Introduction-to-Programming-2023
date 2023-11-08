@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM</title>
+
+    <style>
+
+        .mySecondClass {
+            color: white;
+        }
+
+        .roundCorners{
+            border-radius: .5rem;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -63,6 +75,15 @@
             el.style.backgroundColor = "red";
             el.style.margin = "1rem";
         }
+
+        //adding classes
+        document.querySelector("#first").classList.add("roundCorners");
+
+        //removing a class
+        document.querySelector("#first").classList.remove("mySecondClass");
+
+        //creating new elements
+
         
     </script>
     

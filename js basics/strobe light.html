@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #strobe {
+            width: 200px;
+            height: 200px;
+            background-color: black;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="strobe"></div>
+
+    <script>
+        let isOn = false;
+
+        setInterval(myStrobeLight, 100);
+
+        function myStrobeLight(){
+            document.querySelector('#strobe').style.backgroundColor = isOn ? "#fff" : "#000";
+            isOn = !isOn;
+        }
+
+
+    </script>
+    
+</body>
+</html>

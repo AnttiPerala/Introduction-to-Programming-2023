@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(16,20px);
+            gap: 1px;
+        }
+
+        .pixel {
+            width: 20px;
+            height: 20px;
+            background-color: lightgray;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="grid">
+      
+    </div>
+
+    <script>
+
+        let grid = document.querySelector(".grid");
+
+        //initialize the grid with the right amount of pixels
+        function setupGrid(size){
+            for (let i = 0; i < size * size; i++ ){
+                const pixel = document.createElement("div");
+                pixel.classList.add("pixel");
+                grid.appendChild(pixel);
+            }
+        }
+
+        //call the function setupGrid:
+        setupGrid(16);
+
+    </script>
+    
+</body>
+</html>
