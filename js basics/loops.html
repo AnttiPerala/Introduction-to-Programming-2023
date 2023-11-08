@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .myDiv{
+            min-width: 20px;
+            min-height: 20px;
+            margin: 1px;
+            background-color: aqua;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+    <div class="myDiv"></div>
+
+    <script>
+
+//for loop
+
+for (let i = 0; i < 5; i++){
+    console.log(i);
+}
+
+//you can also initialize i as 1 if you want to count from 1 to 5
+
+for (let i = 1; i < 6; i++) {
+        console.log(i);
+    }
+
+//for loop practical example
+
+for (let i = 0; i < 100; i++){
+    document.body.innerHTML += '<p>' + (99-i) + ' bottles of beer on the wall.' + '</p>'; 
+}
+
+//alternatively you can mess with the loop logic like this:
+    for (let i = 99; i > 0; i--) {
+        document.body.innerHTML += '<p>' + i + ' bottles of beer on the wall.' + '</p>';
+    }
+
+//while loop
+console.log("While loop:");
+
+let j = 0;
+while (j < 5){
+    console.log(j);
+    j++; //if you forget this, then the browser probably crashes
+}
+
+//array forEach loop
+
+const fruits = ["apple", "banana", "cherry"];
+
+fruits.forEach(function(fruit){
+    console.log(fruit);
+})
+
+//for - of loop
+console.log("For-of loop:");
+
+for (const fruit of fruits){
+    console.log(fruit);
+}
+
+//for of loop works with all kinds of collections, including HTMLcollections and nodeLists
+
+for (let element of document.getElementsByClassName("myDiv")){
+    element.innerHTML = "I was dynamically added here!";
+}
+
+//works also with querySelectorAll nodeLists
+    for (let element of document.querySelectorAll(".myDiv")) {
+        element.innerHTML = "Works also with querySelectors";
+    }
+
+    </script>
+</body>
+</html>

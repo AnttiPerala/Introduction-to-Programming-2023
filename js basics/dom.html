@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+
+    <div id="first" class="myDiv mySecondClass">Hello</div>
+
+    <div id="second" class="myDiv mySecondClass">World</div>
+
+    <div>Third div with no identifiers</div>
+
+    <script>
+        //dir lets you dig in to the element and see all its properties, attributes and child nodes
+        console.dir(document.querySelector('.myDiv'));
+
+        //accessing an element by it's ID
+        let myElem = document.getElementById("first");
+
+        myElem.textContent = "Welcome to the JavaScript DOM!";
+
+        //accessing an ID with querySelector
+        myElem = document.querySelector('#first');
+
+        myElem.innerHTML = '<ul>'+
+                                '<li>My first li element</li>'+
+                                '<li>My second li element</li>'+
+                            '</ul>';
+
+        //getting elements by their class
+
+        const mySelector = "myDiv";
+
+        let myElements = document.getElementsByClassName(mySelector);
+        
+        //works but could be logged in a better way
+        console.log("My elements looks like this " + myElements);
+
+        //better console log statement
+        console.log("My elements looks like this ", myElements);
+
+        //select the first matching class using querySelector
+
+        myElements = document.querySelector(".myDiv");
+
+        console.log("My elements with querySelector looks like this ", myElements);
+
+        //select all matching classes with querySelectorAll
+
+        myElements = document.querySelectorAll(".myDiv");
+
+        console.log("My elements with querySelectorAll looks like this ", myElements);
+ 
+        //select based on just tag
+
+        let myDivs = document.getElementsByTagName("div");
+
+        //we need to loop through the collection in order to manipulate the elements of the collection
+        for (let el of myDivs){
+            el.style.backgroundColor = "red";
+            el.style.margin = "1rem";
+        }
+        
+    </script>
+    
+</body>
+</html>
