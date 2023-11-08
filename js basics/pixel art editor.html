@@ -10,17 +10,23 @@
             display: grid;
             grid-template-columns: repeat(16,20px);
             gap: 1px;
+            margin: 1rem;
+          
         }
 
         .pixel {
             width: 20px;
             height: 20px;
-            background-color: lightgray;
+            background-color: #fff;
+            border: 1px lightgray solid;
+            box-sizing: border-box;
         }
     </style>
 
 </head>
 <body>
+
+    <input type="color" id="selectedColor" value="#000">
 
     <div class="grid">
       
@@ -33,14 +39,31 @@
         //initialize the grid with the right amount of pixels
         function setupGrid(size){
             for (let i = 0; i < size * size; i++ ){
+
                 const pixel = document.createElement("div");
+
                 pixel.classList.add("pixel");
+
+                //add a click listenener to the newly created pixel 
+                pixel.addEventListener("click", function(){
+                    let mySelectedColor = document.querySelector('#selectedColor').value;
+                    this.style.backgroundColor = mySelectedColor;
+                })
+
+                pixel.addEventListener("contextmenu", function (e) {
+                e.preventDefault();
+                this.style.backgroundColor = "#fff";
+                })
+
+
                 grid.appendChild(pixel);
             }
         }
 
         //call the function setupGrid:
         setupGrid(16);
+
+
 
     </script>
     

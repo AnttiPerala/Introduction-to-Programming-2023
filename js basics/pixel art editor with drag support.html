@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(16,20px);
+            gap: 1px;
+            margin: 1rem;
+          
+        }
+
+        .pixel {
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border: 1px lightgray solid;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+<body>
+
+    <input type="color" id="selectedColor" value="#000">
+
+    <div class="grid">
+      
+    </div>
+
+    <script>
+
+        let leftMouseIsDown = false;
+        let rightMouseIsDown = false;
+
+        let grid = document.querySelector(".grid");
+
+        //initialize the grid with the right amount of pixels
+        function setupGrid(size){
+            for (let i = 0; i < size * size; i++ ){
+
+                const pixel = document.createElement("div");
+
+                pixel.classList.add("pixel");
+
+                //add a click listenener to the newly created pixel 
+                pixel.addEventListener("mousedown", function(e){
+                    e.preventDefault();
+                    leftMouseIsDown = true;
+                    rightMouseIsDown = (e.button === 2);
+                    colorOrErase(this);
+                })
+
+                pixel.addEventListener("mouseenter", function(){
+                    if (leftMouseIsDown) {
+                        colorOrErase(this);
+                    }
+                })
+
+
+
+                pixel.addEventListener("contextmenu", function (e) {
+                e.preventDefault();
+                this.style.backgroundColor = "#fff";
+                })
+
+
+                grid.appendChild(pixel);
+            }
+        }
+
+        function colorOrErase(pixelElement){
+            let mySelectedColor = document.querySelector('#selectedColor').value;
+            pixelElement.style.backgroundColor = rightMouseIsDown ? "#fff" : mySelectedColor;
+        }
+
+        document.addEventListener("mouseup", function(){
+            leftMouseIsDown = false;
+        })
+
+        //call the function setupGrid:
+        setupGrid(16);
+
+        /* SAVE AS IMAGE */
+
+            function saveAsImage() {
+                const size = 16; // Size of the grid
+                const pixelSize = 1; // Set this to 1 so each grid square is one pixel in the output image
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = size * pixelSize; // This will now be the same as the grid size
+                canvas.height = size * pixelSize; // This will now be the same as the grid size
+
+                const pixels = document.querySelectorAll('.pixel');
+                pixels.forEach((pixel, index) => {
+                    const x = (index % size) * pixelSize;
+                    const y = Math.floor(index / size) * pixelSize;
+                    // Fill the pixel with the corresponding color or default to white
+                    ctx.fillStyle = pixel.style.backgroundColor || '#ffffff';
+                    ctx.fillRect(x, y, pixelSize, pixelSize); // Draws a 1x1 pixel square
+                });
+
+                // Create an image from the canvas
+                const imageURL = canvas.toDataURL('image/png');
+
+                // Create a link for downloading the image
+                const downloadLink = document.createElement('a');
+                downloadLink.href = imageURL;
+                downloadLink.download = 'pixel-art.png'; // Set the file name for download
+
+                // Trigger the download
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            }
+
+            // Add the save button to the document
+            const saveButton = document.createElement('button');
+            saveButton.textContent = 'Save as Image';
+            saveButton.addEventListener('click', saveAsImage);
+            document.body.insertBefore(saveButton, document.body.firstChild);
+
+
+
+
+    </script>
+    
+</body>
+</html>
