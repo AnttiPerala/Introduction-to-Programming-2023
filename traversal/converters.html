@@ -62,10 +62,6 @@
         }
     }
 
-    
-        
-
-
 
     function handleChange(inputElem, converter){
         //get the closest ancestor of the input that has the class "converter" and log its id
@@ -107,9 +103,9 @@
                 result = '';
             } else {
                 if (unit === 'f') {
-                    result = (value-32)*5/9 + ' celcius';
+                    result = ((value-32)*5/9).toFixed(2) + ' celcius';
                 } else {
-                    result = (value * 9/5)+32 + ' fahrenheit';
+                    result = ((value * 9/5)+32).toFixed(2) + ' fahrenheit';
                 }
             }
 
