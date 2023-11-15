@@ -10,11 +10,27 @@
             height: 20vw;
             background-color: darksalmon;
         }
+
+        #result{
+            font-size: 20rem;
+            font-weight: bolder;
+        }
     </style>
 </head>
 <body>
 
     <div class="box"></div>
+
+    <select id="shippingOptions">
+        <option value="">Select shipping</option>
+        <option value="0">Pick up from store</option>
+        <option value="3">Send to closest post office</option>
+        <option value="7">Deliver to home</option>
+    </select>
+
+    <input id="myTextInput" type="text">
+
+    <div id="result"></div>
 
     <script>
 
@@ -41,6 +57,29 @@
             })
 
         //keyboard event example is in the "keyboard drum machine folder"
+
+
+        //change event listener example
+        
+        let mySelect = document.getElementById('shippingOptions');
+
+        mySelect.addEventListener('change', function(){
+            alert("The shipping now costs " + this.value + '€');
+        })
+
+        //change doesnt fire on every thing typed into a text input
+
+        let myTextInput = document.querySelector('#myTextInput');
+
+        myTextInput.addEventListener('change', function () {
+                alert("The text box value is now " + this.value);
+            })
+
+        //sometimes you want to detect every character change in an input
+
+        myTextInput.addEventListener('keyup', function () {
+                document.getElementById("result").innerHTML = this.value;
+            })
 
 
     </script>
