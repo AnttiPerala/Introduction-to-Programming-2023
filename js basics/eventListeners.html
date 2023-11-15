@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 20vw;
+            height: 20vw;
+            background-color: darksalmon;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box"></div>
+
+    <script>
+
+        //select a class and add a click event listener to it
+
+        let box = document.getElementsByClassName("box")[0];
+
+        box.addEventListener('click', handleBoxClick);
+
+        function handleBoxClick(){
+            document.body.style.backgroundColor = "rgb(122, 163, 233)";
+        }
+
+        //select a class with querySelector and a mouseOver listener to it
+
+        let myDiv = document.querySelector(".box");
+
+        myDiv.addEventListener('mouseover', function(){
+            this.style.borderRadius = "2rem";
+        })
+
+        myDiv.addEventListener('mouseout', function () {
+                this.style.borderRadius = "0";
+            })
+
+
+    </script>
+    
+</body>
+</html>
