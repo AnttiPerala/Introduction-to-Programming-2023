@@ -19,7 +19,7 @@
 </head>
 <body>
 
-    <div class="converter" id="lenght">
+    <div class="converter" id="length">
         <h3>Length Converter (Inches ↔ Centimeters)</h3>
         <input type="number" placeholder="Enter value">
         <input type="radio" name="lenghtUnit" value="cm" checked>
@@ -43,9 +43,37 @@
             //get the closest ancestor of the input that has the class "converter" and log its id
             let converterId = this.closest('.converter').id;
             console.log(converterId);
+
+            let myValue = this.value;
+            let myUnit = this.closest('.converter').querySelector('input[type="radio"]:checked').value;
+
+            //switch statements are like if statements but handier in some situations
+            switch (converterId){
+                case 'length': convertLength(myValue, myUnit, converter)
+                break;
+                case 'temperature': convertTemperature()
+                break;
+                default:
+            }
         })
     }
 
+    function convertLength(value, unit, converter){
+        let result;
+        if (value === ''){
+            result = '';
+        } else {
+            if (unit === 'inches'){
+                result = (value * 2.54).toFixed(2) + ' cm';
+            } else {
+                result = (value / 2.54).toFixed(2) + ' inches'; 
+            }
+        }
+
+        converter.querySelector('.result').textContent = result;
+
+    }
+    
 
    </script>
     
