@@ -29,6 +29,16 @@
         <div class="result"></div>
     </div>
 
+    <div class="converter" id="temperature">
+        <h3>Temperature Converter (Fahrenheit ↔ Celcius)</h3>
+        <input type="number" placeholder="Enter value">
+        <input type="radio" name="tempUnit" value="f" checked>
+        <label>Fahrenheit to Celcius</label>
+        <input type="radio" name="tempUnit" value="c">
+        <label>Celcius to Fahrenheit</label>
+        <div class="result"></div>
+    </div>
+
    <script>
 
     //select all divs with the class "converter"
@@ -69,7 +79,7 @@
         switch (converterId) {
             case 'length': convertLength(myValue, myUnit, converter)
                 break;
-            case 'temperature': convertTemperature()
+            case 'temperature': convertTemperature(myValue, myUnit, converter);
                 break;
             default:
         }
@@ -90,6 +100,22 @@
         converter.querySelector('.result').textContent = result;
 
     }
+
+    function convertTemperature(value, unit, converter) {
+            let result;
+            if (value === '') {
+                result = '';
+            } else {
+                if (unit === 'f') {
+                    result = (value-32)*5/9 + ' celcius';
+                } else {
+                    result = (value * 9/5)+32 + ' fahrenheit';
+                }
+            }
+
+            converter.querySelector('.result').textContent = result;
+
+        }
     
 
    </script>
