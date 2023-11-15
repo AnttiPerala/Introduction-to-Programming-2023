@@ -40,22 +40,39 @@
         let converterInput = converter.querySelector('input[type="number"]');
         //add a listener for releasing a key on the keyboard
         converterInput.addEventListener('keyup', function(){
-            //get the closest ancestor of the input that has the class "converter" and log its id
-            let converterId = this.closest('.converter').id;
-            console.log(converterId);
-
-            let myValue = this.value;
-            let myUnit = this.closest('.converter').querySelector('input[type="radio"]:checked').value;
-
-            //switch statements are like if statements but handier in some situations
-            switch (converterId){
-                case 'length': convertLength(myValue, myUnit, converter)
-                break;
-                case 'temperature': convertTemperature()
-                break;
-                default:
-            }
+            handleChange(this, converter);
         })
+
+        const radioInputs = converter.querySelectorAll('input[type="radio"]');
+
+        for (let radioInput of radioInputs){
+            radioInput.addEventListener('change', function(){
+                handleChange(converterInput, converter);
+            })
+        }
+    }
+
+    
+        
+
+
+
+    function handleChange(inputElem, converter){
+        //get the closest ancestor of the input that has the class "converter" and log its id
+        let converterId = inputElem.closest('.converter').id;
+
+
+        let myValue = inputElem.value;
+        let myUnit = inputElem.closest('.converter').querySelector('input[type="radio"]:checked').value;
+
+        //switch statements are like if statements but handier in some situations
+        switch (converterId) {
+            case 'length': convertLength(myValue, myUnit, converter)
+                break;
+            case 'temperature': convertTemperature()
+                break;
+            default:
+        }
     }
 
     function convertLength(value, unit, converter){
