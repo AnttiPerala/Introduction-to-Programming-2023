@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .converter{
+            border: 1px solid black;
+            padding: 1rem;
+            margin: 1rem;
+            border-radius: 0.3rem;
+            width: calc(50vw - 5rem);
+            display: inline-block;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="converter" id="lenght">
+        <h3>Length Converter (Inches ↔ Centimeters)</h3>
+        <input type="number" placeholder="Enter value">
+        <input type="radio" name="lenghtUnit" value="cm" checked>
+        <label>Centimeters to Inches</label>
+        <input type="radio" name="lenghtUnit" value="inches">
+        <label>Inches to Centimeters</label>
+        <div class="result"></div>
+    </div>
+
+   <script>
+
+    //select all divs with the class "converter"
+    const converters = document.querySelectorAll('.converter');
+
+    //loop through the converters and call each individual converter "converter" 
+    for (let converter of converters){
+        //select only the number input from inside the converter div
+        let converterInput = converter.querySelector('input[type="number"]');
+        //add a listener for releasing a key on the keyboard
+        converterInput.addEventListener('keyup', function(){
+            //get the closest ancestor of the input that has the class "converter" and log its id
+            let converterId = this.closest('.converter').id;
+            console.log(converterId);
+        })
+    }
+
+
+   </script>
+    
+</body>
+</html>
