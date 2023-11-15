@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <audio id="kick" src="kick.wav"></audio>
+    <audio id="snare" src="snare.wav"></audio>
+    <audio id="hihat" src="hihat.wav"></audio>
+    <audio id="extra" src="extra.wav"></audio>
+
+    <script>
+        //add an event listener for the keyboard
+
+        document.addEventListener('keydown', function(event){
+
+            if (event.key === 'q'){
+                document.getElementById("kick").play();
+            }
+
+             if (event.key === 'w') {
+                document.getElementById("snare").play();
+            }
+
+            if (event.key === 'e') {
+                document.getElementById("hihat").play();
+            }
+
+             if (event.key === 'r') {
+                document.getElementById("extra").play();
+            }
+
+        })
+
+
+
+    </script>
+    
+</body>
+</html>
