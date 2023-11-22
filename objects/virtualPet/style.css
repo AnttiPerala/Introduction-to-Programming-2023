@@ -1,0 +1,30 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.petContainer{
+    width: 50vw;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+}
+
+.propertyName{
+    color: cornflowerblue;
+}
+
+.pet-info {
+    text-align: right;
+    width: 50%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+#petImage {
+    margin: 1rem auto;
+    display: block;
+}
