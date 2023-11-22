@@ -48,6 +48,12 @@
             console.log("Hobby: " + hobby);
         })
 
+        //lets add a method dynamically to person2
+
+        person2.introduce = function(){
+            return "Hi, I'm " + this.name + ". My favorite hobby is " + this.hobbies[0] + "."; //access nested array
+        }
+
 
     </script>
     
