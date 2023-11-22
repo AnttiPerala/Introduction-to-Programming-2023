@@ -10,13 +10,18 @@ body {
     border-radius: 1rem;
 }
 
+.petContainer img{
+    width: 250px;
+    height: auto;
+}
+
 .propertyName{
     color: cornflowerblue;
 }
 
 .pet-info {
     text-align: right;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
 }
 
