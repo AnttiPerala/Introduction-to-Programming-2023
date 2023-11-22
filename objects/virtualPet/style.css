@@ -28,3 +28,7 @@ h1 {
     margin: 1rem auto;
     display: block;
 }
+
+.buttons {
+    text-align: center;
+}
