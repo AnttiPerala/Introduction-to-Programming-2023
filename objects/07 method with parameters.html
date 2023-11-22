@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        //object constructor function:
+        //lets add a method with a parameter
+        function Fruit(ourBrand, ourCost, ourWeight, ourPicture){
+            this.brand = ourBrand,
+            this.cost = ourCost,
+            this.weight = ourWeight,
+            this.picture = ourPicture,
+            this.calculatePrice = function(numberOfFruit){
+                return (this.weight * (this.cost /1000) * numberOfFruit)
+            }
+        }
+
+        let apple = new Fruit('Gala', 2, 70, 'img/apple.png');
+
+        let banana = new Fruit('Chiquita', 1.5, 118, 'img/banana.png');
+
+       
+
+      
+
+    </script>
+    
+</body>
+</html>

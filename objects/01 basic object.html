@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        //basic empty object
+        let apple = {};
+
+        //an object with one key-value pair
+        let tomato = {
+            weight: 70 
+        }
+
+        //access property like this:
+        //tomato.weight;
+        //or
+        //tomato['weight'];
+
+        //note how the second option gives us the ability to use any dynamic value for the property name:
+
+        let strawberry = {
+            weight: 30,
+            color: 'red'
+        }
+
+        let myDynamicPropertyName = 'color';
+
+        //strawberry[myDynamicPropertyName]; //essentailly the same as writing strawberry['color']
+
+        //you now change the value of the myDynamicPropertyName variable in the console to either "weight" or "color" and ask for strawberry[myDynamicPropertyName] to get a different result
+
+    </script>
+    
+</body>
+</html>

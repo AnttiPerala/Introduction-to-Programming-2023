@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        //defining a nested object called address
+        let person = {
+            name: "Bob",
+            age: 30,
+            address: {
+                street: "123 Maple Street",
+                city: "Springfield",
+                zipCode: 12345
+            }
+        }
+
+        //access city with person.address.city
+
+        //log just they key names of an object
+        for (let key in person){
+            console.log(key);
+        }
+
+        //log key names and values
+         for (let key in person) {
+                console.log(key + ": " + person[key]);
+            }
+
+        //Accessing a nested object
+        for (let key in person.address){
+            console.log(key + ": " + person.address[key])
+        }
+
+        //looping through an array inside an object
+
+        let person2 = {
+            name: "Jane",
+            hobbies: ["reading", "hiking", "cycling"]
+        }
+
+        person2.hobbies.forEach(function(hobby){
+            console.log("Hobby: " + hobby);
+        })
+
+
+    </script>
+    
+</body>
+</html>
