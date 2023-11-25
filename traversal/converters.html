@@ -39,6 +39,12 @@
         <div class="result"></div>
     </div>
 
+    <div class="converter" id="date">
+        <h3>Date Calculator</h3>
+        <input type="number" placeholder="Enter number of days">
+        <div class="result"></div>
+    </div>
+
    <script>
 
     //select all divs with the class "converter"
@@ -77,6 +83,9 @@
                 break;
             case 'temperature': convertTemperature(myValue, myUnit, converter);
                 break;
+            case 'date':
+            convertDate(myValue, converter);
+                break;
             default:
         }
     }
@@ -112,6 +121,18 @@
             converter.querySelector('.result').textContent = result;
 
         }
+
+        function convertDate(days, converter) {
+    let result;
+    if (days === '') {
+        result = '';
+    } else {
+        let currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + parseInt(days));
+        result = currentDate.toDateString();
+    }
+    converter.querySelector('.result').textContent = result;
+}
     
 
    </script>
