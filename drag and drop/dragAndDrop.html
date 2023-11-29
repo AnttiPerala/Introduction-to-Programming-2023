@@ -67,6 +67,15 @@
                 draggedItem = minor;
                 setTimeout(() => {minor.style.display = 'none'}, 0);
             })
+
+            minor.addEventListener('dragend', function () {
+                
+                setTimeout(() => { 
+                    minor.style.display = 'block';
+                    draggedItem = null; 
+                
+                }, 0);
+            })
         })
 
          document.querySelectorAll('.year').forEach(function (year) {
@@ -79,7 +88,7 @@
                 year.addEventListener('drop', function (event) {
                     event.preventDefault();
                     this.appendChild(draggedItem);
-                    draggedItem.style.display ="block";
+                    //draggedItem.style.display ="block";
                 })
 
             })
