@@ -47,7 +47,16 @@
         }
 
         .mole {
-            background-image: url();
+            background-image: url("moleExtract.png");
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        #gavel{
+            width: 150px;
+            position: absolute;
         }
     </style>
 
@@ -65,10 +74,35 @@
 
     </div>
 
+    <img id="gavel" src="gavelExtract.png" alt="gavel">
+
     <script>
+
+        //sound initialization
+        const moleAppearSound = new Audio("moleAppear.wav");
 
         const mole = document.createElement('div');
         mole.classList.add("mole");
+
+        const holes = document.querySelectorAll('.hole');
+    
+        setInterval(()=>{
+            const randomNumber = Math.random()*5;
+            const roundedNumber = Math.floor(randomNumber);
+            console.log(roundedNumber);
+            holes[roundedNumber].appendChild(mole);
+            moleAppearSound.play();
+        },500)
+
+
+        const gavel = document.getElementById("gavel");
+
+        document.addEventListener('mousemove', function(event){
+
+            gavel.style.left = event.pageX + 'px';
+            gavel.style.top = event.pageY + 'px';
+
+        })
 
 
     </script>
