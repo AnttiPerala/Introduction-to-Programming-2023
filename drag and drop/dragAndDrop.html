@@ -27,8 +27,12 @@
             min-height: 12vw;
             background-color: lightsalmon;
             margin: 1rem;
-            width: 20vw;
+            width: 18vw;
             padding: 1rem;
+        }
+
+        h1 {
+            margin: 0;
         }
 
     </style>
@@ -50,6 +54,40 @@
     <div class="minor" draggable="true"><h1>Visual Design</h1></div>
     <div class="minor" draggable="true"><h1>Games Academy Season 1</h1></div>
     <div class="minor" draggable="true"><h1>Games Academy Season 2</h1></div>
+
+    <script>
+
+        let draggedItem = null;
+
+        document.querySelectorAll('.minor').forEach(function(minor){
+
+            //console.log('Minor being processed by the loop is ', minor)
+
+            minor.addEventListener('dragstart', function(){
+                draggedItem = minor;
+                setTimeout(() => {minor.style.display = 'none'}, 0);
+            })
+        })
+
+         document.querySelectorAll('.year').forEach(function (year) {
+
+                //console.log('Minor being processed by the loop is ', minor)
+                year.addEventListener('dragover', function (event) {
+                 event.preventDefault();
+                })
+
+                year.addEventListener('drop', function (event) {
+                    event.preventDefault();
+                    this.appendChild(draggedItem);
+                    draggedItem.style.display ="block";
+                })
+
+            })
+
+
+
+
+    </script>
     
 </body>
 </html>
