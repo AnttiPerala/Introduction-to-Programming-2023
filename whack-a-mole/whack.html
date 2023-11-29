@@ -1,11 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        #field {
+            width: 640px;
+            height: 640px;
+            background-image: url('field.png');
+            position: relative;
+        }
+
+        .hole {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            /* background-color: rgba(0, 0, 255, 0.517); */
+        }
+
+        #hole5 {
+            left: 541px;
+            top: 103px;
+        }
+
+        #hole4 {
+            left: 214px;
+            top: 114px;
+        }
+
+        #hole3 {
+            left: 58px;
+            top: 243px;
+        }
+
+        #hole2 {
+            left: 419px;
+            top: 320px;
+        }
+
+        #hole1 {
+            left: 283px;
+            top: 530px;
+        }
+
+        .mole {
+            background-image: url();
+        }
+    </style>
+
 </head>
+
 <body>
-    
+
+    <div id="field">
+
+        <div id="hole1" class="hole"></div>
+        <div id="hole2" class="hole"></div>
+        <div id="hole3" class="hole"></div>
+        <div id="hole4" class="hole"></div>
+        <div id="hole5" class="hole"></div>
+
+    </div>
+
+    <script>
+
+        const mole = document.createElement('div');
+        mole.classList.add("mole");
+
+
+    </script>
+
 </body>
+
 </html>
