@@ -13,6 +13,45 @@
 
         .front {
             font-family: 'VujahdayScript', sans-serif;
+            text-align: center;
+        }
+
+        .back{
+            transform: rotateY(180deg);
+        }
+
+        .card{
+            width: 300px;
+            height: 300px;
+            perspective: 500px;
+            margin: 1rem;
+        }
+
+        .content{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            border: 1px rgb(26, 26, 26) solid;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.229);
+        }
+
+        .card:hover .content{
+            transform: rotateY(180deg);
+            transition: transform 0.5s;
+        }
+
+        .front,
+        .back{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
     </style>
@@ -24,6 +63,23 @@
         <div class="content">
             <div class="front">
                 <h1>Web and App Design and Development</h1>
+            </div>
+            <div class="back">
+                <ul>
+                    <li>Web and App Design Theory 5cr</li>
+                    <li>Web and App Design 5cr</li>
+                    <li>Web and App Programming 5cr</li>
+                    <li>Web/App Design Project 1 5cr</li>
+                    <li>Web/App Design Project 2 5cr</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="content">
+            <div class="front">
+                <h1>User Experience Design</h1>
             </div>
             <div class="back">
                 <ul>
