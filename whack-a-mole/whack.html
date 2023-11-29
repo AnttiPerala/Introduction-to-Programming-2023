@@ -58,9 +58,10 @@
         #gavel {
             width: 150px;
             position: absolute;
+            pointer-events: none;
         }
 
-      /*   button,
+         button,
         button:focus {
             font-size: 17px;
             padding: 10px 25px;
@@ -77,13 +78,24 @@
         button:active {
             transform: translate(0, 0);
             border-bottom: 2px solid rgb(50, 50, 50);
-        } */
+        } 
 
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+        }
+
+        .swing{
+            animation-name: rotateElement;
+            animation-duration: 0.2s;
+            transform-origin: 0 75px;
+        }
+
+        @keyframes rotateElement{
+            0% {transform: rotate(0);}
+            100%{transform: rotate(90deg);}
         }
     </style>
 
@@ -102,6 +114,8 @@
     </div>
 
     <button id="startBtn">Start</button>
+    <h2 id="timeLeft">Time left: 30</h2>
+    <h2 id="score">Hits: 0</h2>
 
     <img id="gavel" src="gavelExtract.png" alt="gavel">
 
@@ -109,6 +123,7 @@
 
         //sound initialization
         const moleAppearSound = new Audio("moleAppear.wav");
+        const moleHit = new Audio("moleHit.wav");
 
         const mole = document.createElement('div');
         mole.classList.add("mole");
@@ -119,23 +134,46 @@
 
         const startButton = document.getElementById("startBtn");
 
+        let gamePlayLoop;
+
+        let score = 0;
+
+        let timeLeft = 30;
+
+        let timeLeftElem = document.getElementById("timeLeft");
+        let scoreElem = document.getElementById("score");
+
         document.addEventListener('DOMContentLoaded', (event) => {
             // Your JavaScript code here 
             startButton.addEventListener("click", function () {
-                console.log("you clicked");
-                setInterval(() => {
-                    const randomNumber = Math.random() * 5;
-                    const roundedNumber = Math.floor(randomNumber);
-                    console.log(roundedNumber);
-                    holes[roundedNumber].appendChild(mole);
-                    moleAppearSound.play();
-                }, 500)
+                if (this.textContent === "Start"){
+                    gamePlayLoop = setInterval(() => {
+                                        const randomNumber = Math.random() * 5;
+                                        const roundedNumber = Math.floor(randomNumber);
+                                        console.log(roundedNumber);
+                                        holes[roundedNumber].appendChild(mole);
+                                        moleAppearSound.play();
+                                        timeLeft -= 0.5;
+                                        timeLeftElem.textContent = "Time left: " + timeLeft;
+                                        if (timeLeft < 0.5){
+                                            clearInterval(gamePlayLoop);
+                                        }
+                                    }, 500)
+                    score = 0;
+                    timeLeft = 30;
+                    this.textContent = "Stop";
+                } else {
+                    clearInterval(gamePlayLoop);
+                    this.textContent = "Start";
+                }
+                
+                
             })
 
         });
 
 
-
+        
 
 
         const gavel = document.getElementById("gavel");
@@ -146,6 +184,41 @@
             gavel.style.top = event.pageY + 'px';
 
         })
+
+        field.addEventListener('click', function(){
+            //console.log('You clicked on the field.')
+
+            gavel.classList.add('swing');
+
+            setTimeout(()=>{
+                gavel.classList.remove('swing');
+            },300)
+
+            if (elementsOverlap(gavel, mole) && timeLeft > 0){
+                mole.style.backgroundImage = "url(moleExtractDamage.png)";
+                moleHit.play();
+                score++;
+                scoreElem.textContent = "Score: " + score;
+
+                setTimeout(()=>{
+                    mole.style.backgroundImage = "url(moleExtract.png)";
+                },700)
+            }
+
+        })
+
+         function elementsOverlap(el1, el2) {
+                const domRect1 = el1.getBoundingClientRect();
+                const domRect2 = el2.getBoundingClientRect();
+
+                return !(
+                    domRect1.top > domRect2.bottom ||
+                    domRect1.right < domRect2.left ||
+                    domRect1.bottom < domRect2.top ||
+                    domRect1.left > domRect2.right
+                );
+            }
+
 
 
     </script>
