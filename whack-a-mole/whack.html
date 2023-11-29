@@ -12,6 +12,7 @@
             height: 640px;
             background-image: url('field.png');
             position: relative;
+            margin: 1rem;
         }
 
         .hole {
@@ -54,27 +55,35 @@
             background-repeat: no-repeat;
         }
 
-        #gavel{
+        #gavel {
             width: 150px;
             position: absolute;
         }
 
-        button, button:focus {
-        font-size: 17px;
-        padding: 10px 25px;
-        border-radius: 0.7rem;
-        background-image: linear-gradient(rgb(214, 202, 254), rgb(158, 129, 254));
-        border: 2px solid rgb(50, 50, 50);
-        border-bottom: 5px solid rgb(50,  50, 50);
-        box-shadow: 0px 1px 6px 0px rgb(158, 129, 254);
-        transform: translate(0, -3px);
-        transition: 0.2s;
-        transition-timing-function: linear;
+      /*   button,
+        button:focus {
+            font-size: 17px;
+            padding: 10px 25px;
+            border-radius: 0.7rem;
+            background-image: linear-gradient(rgb(214, 202, 254), rgb(158, 129, 254));
+            border: 2px solid rgb(50, 50, 50);
+            border-bottom: 5px solid rgb(50, 50, 50);
+            box-shadow: 0px 1px 6px 0px rgb(158, 129, 254);
+            transform: translate(0, -3px);
+            transition: 0.2s;
+            transition-timing-function: linear;
         }
 
         button:active {
-        transform: translate(0, 0);
-        border-bottom: 2px solid rgb(50, 50, 50);
+            transform: translate(0, 0);
+            border-bottom: 2px solid rgb(50, 50, 50);
+        } */
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
     </style>
 
@@ -104,20 +113,34 @@
         const mole = document.createElement('div');
         mole.classList.add("mole");
 
+        const field = document.getElementById("field");
+
         const holes = document.querySelectorAll('.hole');
-    
-        setInterval(()=>{
-            const randomNumber = Math.random()*5;
-            const roundedNumber = Math.floor(randomNumber);
-            console.log(roundedNumber);
-            holes[roundedNumber].appendChild(mole);
-            moleAppearSound.play();
-        },500)
+
+        const startButton = document.getElementById("startBtn");
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Your JavaScript code here 
+            startButton.addEventListener("click", function () {
+                console.log("you clicked");
+                setInterval(() => {
+                    const randomNumber = Math.random() * 5;
+                    const roundedNumber = Math.floor(randomNumber);
+                    console.log(roundedNumber);
+                    holes[roundedNumber].appendChild(mole);
+                    moleAppearSound.play();
+                }, 500)
+            })
+
+        });
+
+
+
 
 
         const gavel = document.getElementById("gavel");
 
-        document.addEventListener('mousemove', function(event){
+        field.addEventListener('mousemove', function (event) {
 
             gavel.style.left = event.pageX + 'px';
             gavel.style.top = event.pageY + 'px';
