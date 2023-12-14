@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            font-family: Arial, Helvetica, sans-serif6;
+        }
+
+        #timeline{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            background-color: cornflowerblue;
+            padding: 1rem;
+        }
+
+        .year{
+            min-height: 16vw;
+            background-color: white;
+        }
+
+        .minor{
+            min-height: 12vw;
+            background-color: lightsalmon;
+            margin: 1rem;
+            width: 18vw;
+            padding: 1rem;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="timeline">
+        <div class="year"></div>
+        <div class="year"></div>
+        <div class="year"></div>
+        <div class="year"></div>
+    </div>
+
+    <div class="minor" draggable="true"><h1>Photography</h1></div>
+    <div class="minor" draggable="true"><h1>Moving Image</h1></div>
+    <div class="minor" draggable="true"><h1>User Experience Design</h1></div>
+    <div class="minor" draggable="true"><h1>Animation</h1></div>
+    <div class="minor" draggable="true"><h1>Web and App Design and Development</h1></div>
+    <div class="minor" draggable="true"><h1>Visual Design</h1></div>
+    <div class="minor" draggable="true"><h1>Games Academy Season 1</h1></div>
+    <div class="minor" draggable="true"><h1>Games Academy Season 2</h1></div>
+
+    <script>
+
+        let draggedItem = null;
+
+        document.querySelectorAll('.minor').forEach(function(minor){
+
+            //console.log('Minor being processed by the loop is ', minor)
+
+            minor.addEventListener('dragstart', function(){
+                draggedItem = minor;
+                setTimeout(() => {minor.style.display = 'none'}, 0);
+            })
+
+            minor.addEventListener('dragend', function () {
+                
+                setTimeout(() => { 
+                    minor.style.display = 'block';
+                    draggedItem = null; 
+                
+                }, 0);
+            })
+        })
+
+         document.querySelectorAll('.year').forEach(function (year) {
+
+                //console.log('Minor being processed by the loop is ', minor)
+                year.addEventListener('dragover', function (event) {
+                 event.preventDefault();
+                })
+
+                year.addEventListener('drop', function (event) {
+                    event.preventDefault();
+                    this.appendChild(draggedItem);
+                    //draggedItem.style.display ="block";
+                })
+
+            })
+
+
+
+
+    </script>
+    
+</body>
+</html>

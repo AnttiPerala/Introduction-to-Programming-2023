@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #field {
+            width: 640px;
+            height: 640px;
+            background-image: url('field.png');
+            position: relative;
+            margin: 1rem;
+        }
+
+        .hole {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            /* background-color: rgba(0, 0, 255, 0.517); */
+        }
+
+        #hole5 {
+            left: 541px;
+            top: 103px;
+        }
+
+        #hole4 {
+            left: 214px;
+            top: 114px;
+        }
+
+        #hole3 {
+            left: 58px;
+            top: 243px;
+        }
+
+        #hole2 {
+            left: 419px;
+            top: 320px;
+        }
+
+        #hole1 {
+            left: 283px;
+            top: 530px;
+        }
+
+        .mole {
+            background-image: url("moleExtract.png");
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        #gavel {
+            width: 150px;
+            position: absolute;
+            pointer-events: none;
+        }
+
+         button,
+        button:focus {
+            font-size: 17px;
+            padding: 10px 25px;
+            border-radius: 0.7rem;
+            background-image: linear-gradient(rgb(214, 202, 254), rgb(158, 129, 254));
+            border: 2px solid rgb(50, 50, 50);
+            border-bottom: 5px solid rgb(50, 50, 50);
+            box-shadow: 0px 1px 6px 0px rgb(158, 129, 254);
+            transform: translate(0, -3px);
+            transition: 0.2s;
+            transition-timing-function: linear;
+        }
+
+        button:active {
+            transform: translate(0, 0);
+            border-bottom: 2px solid rgb(50, 50, 50);
+        } 
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .swing{
+            animation-name: rotateElement;
+            animation-duration: 0.2s;
+            transform-origin: 0 75px;
+        }
+
+        @keyframes rotateElement{
+            0% {transform: rotate(0);}
+            100%{transform: rotate(90deg);}
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="field">
+
+        <div id="hole1" class="hole"></div>
+        <div id="hole2" class="hole"></div>
+        <div id="hole3" class="hole"></div>
+        <div id="hole4" class="hole"></div>
+        <div id="hole5" class="hole"></div>
+
+    </div>
+
+    <button id="startBtn">Start</button>
+    <h2 id="timeLeft">Time left: 30</h2>
+    <h2 id="score">Hits: 0</h2>
+
+    <img id="gavel" src="gavelExtract.png" alt="gavel">
+
+    <script>
+
+        //sound initialization
+        const moleAppearSound = new Audio("moleAppear.wav");
+        const moleHit = new Audio("moleHit.wav");
+
+        const mole = document.createElement('div');
+        mole.classList.add("mole");
+
+        const field = document.getElementById("field");
+
+        const holes = document.querySelectorAll('.hole');
+
+        const startButton = document.getElementById("startBtn");
+
+        let gamePlayLoop;
+
+        let score = 0;
+
+        let timeLeft = 30;
+
+        let timeLeftElem = document.getElementById("timeLeft");
+        let scoreElem = document.getElementById("score");
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Your JavaScript code here 
+            startButton.addEventListener("click", function () {
+                if (this.textContent === "Start"){
+                    gamePlayLoop = setInterval(() => {
+                                        const randomNumber = Math.random() * 5;
+                                        const roundedNumber = Math.floor(randomNumber);
+                                        console.log(roundedNumber);
+                                        holes[roundedNumber].appendChild(mole);
+                                        moleAppearSound.play();
+                                        timeLeft -= 0.5;
+                                        timeLeftElem.textContent = "Time left: " + timeLeft;
+                                        if (timeLeft < 0.5){
+                                            clearInterval(gamePlayLoop);
+                                        }
+                                    }, 500)
+                    score = 0;
+                    timeLeft = 30;
+                    this.textContent = "Stop";
+                } else {
+                    clearInterval(gamePlayLoop);
+                    this.textContent = "Start";
+                }
+                
+                
+            })
+
+        });
+
+
+        
+
+
+        const gavel = document.getElementById("gavel");
+
+        field.addEventListener('mousemove', function (event) {
+
+            gavel.style.left = event.pageX + 'px';
+            gavel.style.top = event.pageY + 'px';
+
+        })
+
+        field.addEventListener('click', function(){
+            //console.log('You clicked on the field.')
+
+            gavel.classList.add('swing');
+
+            setTimeout(()=>{
+                gavel.classList.remove('swing');
+            },300)
+
+            if (elementsOverlap(gavel, mole) && timeLeft > 0){
+                mole.style.backgroundImage = "url(moleExtractDamage.png)";
+                moleHit.play();
+                score++;
+                scoreElem.textContent = "Score: " + score;
+
+                setTimeout(()=>{
+                    mole.style.backgroundImage = "url(moleExtract.png)";
+                },700)
+            }
+
+        })
+
+         function elementsOverlap(el1, el2) {
+                const domRect1 = el1.getBoundingClientRect();
+                const domRect2 = el2.getBoundingClientRect();
+
+                return !(
+                    domRect1.top > domRect2.bottom ||
+                    domRect1.right < domRect2.left ||
+                    domRect1.bottom < domRect2.top ||
+                    domRect1.left > domRect2.right
+                );
+            }
+
+
+
+    </script>
+
+</body>
+
+</html>
